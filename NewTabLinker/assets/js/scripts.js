@@ -5,7 +5,8 @@ var newTabLinker = {
         inputName: "#txtLink",
         buttonName: "#btnAddLink",
         valuesList: ".values-list",
-        paramName: "ntlStorageObjet"
+        paramName: "ntlStorageObjet",
+        removeLink: ".remove-link"
     },
 
     bindAddButton: function () {
@@ -18,11 +19,24 @@ var newTabLinker = {
             }
 
             ntlModel.push(inputValue);
-            var save = {};
-            save[_this.params.paramName] = ntlModel;
-            chrome.storage.sync.set(save, function () {
-                _this.outputExistingValue();
-            });
+            _this.saveDataToStorage();
+        });
+    },
+
+    bindRemoveButtons: function() {
+        var _this = this;
+        $(_this.params.valuesList).on("click", _this.params.removeLink, function(e) {
+            ntlModel.splice($(this).attr('data-val'), 1);
+            _this.saveDataToStorage();
+        });
+    },
+
+    saveDataToStorage: function() {
+        var _this = this;
+        var save = {};
+        save[_this.params.paramName] = ntlModel;
+        chrome.storage.sync.set(save, function () {
+            _this.outputExistingValue();
         });
     },
 
@@ -31,8 +45,12 @@ var newTabLinker = {
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
         $.each(ntlModel, function (idx, val) {
-            existingValuesList.append("<li>" + val + "</li>");
+            _this.outputRow(existingValuesList, idx, val);
         });
+    },
+
+    outputRow: function(list, idx, val) {
+        list.append("<li>" + idx + " - " + val + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
     },
 
     loadDataFromStorage: function() {
@@ -50,5 +68,6 @@ var newTabLinker = {
     $(document).ready(function () {
         newTabLinker.loadDataFromStorage();
         newTabLinker.bindAddButton();
+        newTabLinker.bindRemoveButtons();
     });
 }(jQuery));
