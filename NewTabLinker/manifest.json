@@ -7,6 +7,6 @@
     "newtab": "newtab.html"
   },
   "permissions": [
-    "storage"
+    "storage", "tabs"
   ]
 }

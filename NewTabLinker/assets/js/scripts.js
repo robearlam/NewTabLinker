@@ -3,15 +3,16 @@
 var newTabLinker = {
     params: {
         inputName: "#txtLink",
-        buttonName: "#btnAddLink",
+        addButtonName: "#btnAddLink",
         valuesList: ".values-list",
         paramName: "ntlStorageObjet",
-        removeLink: ".remove-link"
+        removeLink: ".remove-link",
+        linkButtonName: "#btnOpenLink"
     },
 
     bindAddButton: function () {
         var _this = this;
-        $(_this.params.buttonName).click(function (e) {
+        $(_this.params.addButtonName).click(function (e) {
             var inputValue = $(_this.params.inputName).val();
             if (!inputValue) {
                 alert("Please enter some text");
@@ -31,12 +32,13 @@ var newTabLinker = {
         });
     },
 
-    saveDataToStorage: function() {
+    bindLinkButton: function() {
         var _this = this;
-        var save = {};
-        save[_this.params.paramName] = ntlModel;
-        chrome.storage.sync.set(save, function () {
-            _this.outputExistingValue();
+        $(_this.params.linkButtonName).click(function (e) {
+            var props = { url: "http://www.google.com.au" };
+            chrome.tabs.getCurrent(function (tab) {
+                chrome.tabs.update(tab.id, props);
+            });
         });
     },
 
@@ -51,6 +53,15 @@ var newTabLinker = {
 
     outputRow: function(list, idx, val) {
         list.append("<li>" + idx + " - " + val + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
+    },
+
+    saveDataToStorage: function () {
+        var _this = this;
+        var save = {};
+        save[_this.params.paramName] = ntlModel;
+        chrome.storage.sync.set(save, function () {
+            _this.outputExistingValue();
+        });
     },
 
     loadDataFromStorage: function() {
@@ -69,5 +80,6 @@ var newTabLinker = {
         newTabLinker.loadDataFromStorage();
         newTabLinker.bindAddButton();
         newTabLinker.bindRemoveButtons();
+        newTabLinker.bindLinkButton();
     });
 }(jQuery));
