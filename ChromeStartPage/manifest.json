@@ -1,9 +1,12 @@
 ﻿{
   "manifest_version": 2,
-  "name": "RobsChromeStartPage",
+  "name": "NewTabLinker",
   "version": "0.0.1",
-  "description": "A custom chrome start page allowing you to add custom quick search boxes.",
-  "chrome_url_overrides" : {
+  "description": "A custom chrome new tab extensions allowing you to add custom quick search boxes.",
+  "chrome_url_overrides": {
     "newtab": "newtab.html"
-  }
+  },
+  "permissions": [
+    "storage"
+  ]
 }
