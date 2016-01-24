@@ -4,11 +4,12 @@ var newTabLinker = {
     params: {
         linkInputName: "#txtLink",
         nameInputName: "#txtName",
+        searchTermInputName: "#searchTerm_",
         addButtonName: "#btnAddLink",
+        linkButtonName: "#btnOpenLink",
         valuesList: ".values-list",
         paramName: "ntlStorageObjet",
         removeLink: ".remove-link",
-        linkButtonName: "#btnOpenLink",
         templateName: "#template"
     },
 
@@ -46,9 +47,9 @@ var newTabLinker = {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.linkButtonName, function(e) {
             var li = $(this).parent("li");
-            var idx = li.attr('data-index');
+            var idx = li.attr("data-index");
             var quickLink = ntlModel[idx];
-            var searchTerm = li.find('#value_' + idx).val();
+            var searchTerm = li.find(_this.params.searchTermInputName + idx).val();
             var props = { url: quickLink.link.replaceAll("{VALUE}", searchTerm) };
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
@@ -66,7 +67,6 @@ var newTabLinker = {
     },
 
     outputRow: function(list, idx, quickLink) {
-        // list.append("<li>" + idx + " - " + quickLink.name + " - " + quickLink.link + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
         var _this = this;
         var templateHtml = $(_this.params.templateName).clone().html();
         list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
@@ -111,5 +111,5 @@ var newTabLinker = {
 
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+    return target.replace(new RegExp(search, "g"), replacement);
 };
