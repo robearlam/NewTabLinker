@@ -45,7 +45,11 @@ var newTabLinker = {
     bindOpenButtons: function() {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.linkButtonName, function(e) {
-            var props = { url: "http://www.google.com.au" };
+            var li = $(this).parent("li");
+            var idx = li.attr('data-index');
+            var quickLink = ntlModel[idx];
+            var searchTerm = li.find('#value_' + idx).val();
+            var props = { url: quickLink.link.replaceAll("{VALUE}", searchTerm) };
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
             });         

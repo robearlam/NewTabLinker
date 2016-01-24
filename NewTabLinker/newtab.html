@@ -10,7 +10,7 @@
 
     <div>
         <fieldset>
-            <legend>Add Link - Include placeholders in the form {PARAM_NAME}</legend>
+            <legend>Add Link - Include search term in {VALUE} placeholder</legend>
             <label for="name">Name:</label>
             <input type="text" name="txtName" id="txtName" placeholder="Please enter the name" />
             <br />
@@ -26,13 +26,10 @@
     </ul>
 
     <ul id="template" style="display:none">
-        <li>
-            <span>{NAME}</span>
-            <br />
+        <li data-index="{INDEX}">
             <label for="value_{INDEX}">Param:</label>
             <input type="text" name="value_{INDEX}" id="value_{INDEX}" />
             <input type="button" value="Search {NAME}" name="btnOpenLink" id="btnOpenLink" />
-            <br />
             <a href="#" class="remove-link" data-val="{INDEX}">remove</a></li>
         </li>
     </ul>
