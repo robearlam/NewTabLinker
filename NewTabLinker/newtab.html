@@ -10,17 +10,31 @@
 
     <div>
         <fieldset>
-            <legend>Add Link</legend>
-            <input type="text" name="txtLink" id="txtLink" />
+            <legend>Add Link - Include placeholders in the form {PARAM_NAME}</legend>
+            <label for="name">Name:</label>
+            <input type="text" name="txtName" id="txtName" placeholder="Please enter the name" />
+            <br />
+            <label for="name">Link:</label>
+            <input type="text" name="txtLink" id="txtLink" style="width:800px" placeholder="Please the url for this link" />
         </fieldset>
         <input type="button" value="Add Link" name="btnAddLink" id="btnAddLink" />
-        <br/>
-        <input type="button" value="Open Link" name="btnOpenLink" id="btnOpenLink" />
     </div>
 
     <h2>Existing values:</h2>
     <ul class="values-list">
 
+    </ul>
+
+    <ul id="template" style="display:none">
+        <li>
+            <span>{NAME}</span>
+            <br />
+            <label for="value_{INDEX}">Param:</label>
+            <input type="text" name="value_{INDEX}" id="value_{INDEX}" />
+            <input type="button" value="Search {NAME}" name="btnOpenLink" id="btnOpenLink" />
+            <br />
+            <a href="#" class="remove-link" data-val="{INDEX}">remove</a></li>
+        </li>
     </ul>
 
     <script src="/assets/js/lib/jquery-3.0.0.min.js" type="text/javascript"></script>

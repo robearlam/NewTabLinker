@@ -2,43 +2,53 @@
 
 var newTabLinker = {
     params: {
-        inputName: "#txtLink",
+        linkInputName: "#txtLink",
+        nameInputName: "#txtName",
         addButtonName: "#btnAddLink",
         valuesList: ".values-list",
         paramName: "ntlStorageObjet",
         removeLink: ".remove-link",
-        linkButtonName: "#btnOpenLink"
+        linkButtonName: "#btnOpenLink",
+        templateName: "#template"
     },
 
     bindAddButton: function () {
         var _this = this;
         $(_this.params.addButtonName).click(function (e) {
-            var inputValue = $(_this.params.inputName).val();
-            if (!inputValue) {
-                alert("Please enter some text");
+            var link = $(_this.params.linkInputName);
+            var name = $(_this.params.nameInputName);
+            if (!link.val() || !name.val()) {
+                alert("Please ensure you have entered the link and its name");
                 return;
             }
 
-            ntlModel.push(inputValue);
+            var quickLink = {
+                name: $(name).val(),
+                link: $(link).val()
+            }
+            ntlModel.push(quickLink);
             _this.saveDataToStorage();
+
+            link.val("");
+            name.val("");
         });
     },
 
-    bindRemoveButtons: function() {
+    bindRemoveLinks: function() {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.removeLink, function(e) {
-            ntlModel.splice($(this).attr('data-val'), 1);
+            ntlModel.splice($(this).attr("data-val"), 1);
             _this.saveDataToStorage();
         });
     },
 
-    bindLinkButton: function() {
+    bindOpenButtons: function() {
         var _this = this;
-        $(_this.params.linkButtonName).click(function (e) {
+        $(_this.params.valuesList).on("click", _this.params.linkButtonName, function(e) {
             var props = { url: "http://www.google.com.au" };
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
-            });
+            });         
         });
     },
 
@@ -46,13 +56,23 @@ var newTabLinker = {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
-        $.each(ntlModel, function (idx, val) {
-            _this.outputRow(existingValuesList, idx, val);
+        $.each(ntlModel, function (idx, quickLink) {
+            _this.outputRow(existingValuesList, idx, quickLink);
         });
     },
 
-    outputRow: function(list, idx, val) {
-        list.append("<li>" + idx + " - " + val + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
+    outputRow: function(list, idx, quickLink) {
+        // list.append("<li>" + idx + " - " + quickLink.name + " - " + quickLink.link + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
+        var _this = this;
+        var templateHtml = $(_this.params.templateName).clone().html();
+        list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
+    },
+
+    replacePlaceholders: function(html, idx, quickLink) {
+        var outputHtml = html.replaceAll("{INDEX}", idx);
+        outputHtml = outputHtml.replaceAll("{NAME}", quickLink.name);
+        outputHtml = outputHtml.replaceAll("{LINK}", quickLink.link);
+        return outputHtml;
     },
 
     saveDataToStorage: function () {
@@ -79,7 +99,13 @@ var newTabLinker = {
     $(document).ready(function () {
         newTabLinker.loadDataFromStorage();
         newTabLinker.bindAddButton();
-        newTabLinker.bindRemoveButtons();
-        newTabLinker.bindLinkButton();
+        newTabLinker.bindRemoveLinks();
+        newTabLinker.bindOpenButtons();
     });
 }(jQuery));
+
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
