@@ -2,24 +2,27 @@
 
 var newTabLinker = {
     params: {
-        inputName: "#txtLink",
+        inputUrl: "#txtUrl",
+        inputName: "#txtName",
         addButtonName: "#btnAddLink",
         valuesList: ".values-list",
         paramName: "ntlStorageObjet",
         removeLink: ".remove-link",
-        linkButtonName: "#btnOpenLink"
+        linkButtonName: ".btnOpenLink"
     },
 
     bindAddButton: function () {
         var _this = this;
         $(_this.params.addButtonName).click(function (e) {
-            var inputValue = $(_this.params.inputName).val();
-            if (!inputValue) {
-                alert("Please enter some text");
+            var inputUrlValue = $(_this.params.inputUrl).val();
+            var inputNameValue = $(_this.params.inputName).val();
+            if (!inputUrlValue || !inputNameValue) {
+                alert("Please ensure you have completed the Name and URL fields.");
                 return;
             }
 
-            ntlModel.push(inputValue);
+            var newEntry = {name:inputNameValue, url: inputUrlValue};
+            ntlModel.push(newEntry);
             _this.saveDataToStorage();
         });
     },
@@ -46,13 +49,14 @@ var newTabLinker = {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
-        $.each(ntlModel, function (idx, val) {
-            _this.outputRow(existingValuesList, idx, val);
+        $.each(ntlModel, function (idx, entry) {
+            _this.outputRow(existingValuesList, idx, entry);
         });
+        _this.bindLinkButton();
     },
 
-    outputRow: function(list, idx, val) {
-        list.append("<li>" + idx + " - " + val + " - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
+    outputRow: function(list, idx, entry) {
+        list.append("<li><input type=\"text\" name=\"searchField\" /><input name=\"btnOpenLink\" data-val=\"" + idx + "\" class=\"btnOpenLink\" type=\"button\" value=\"Search " + entry.name + "\" /> - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
     },
 
     saveDataToStorage: function () {
@@ -80,6 +84,5 @@ var newTabLinker = {
         newTabLinker.loadDataFromStorage();
         newTabLinker.bindAddButton();
         newTabLinker.bindRemoveButtons();
-        newTabLinker.bindLinkButton();
     });
 }(jQuery));
