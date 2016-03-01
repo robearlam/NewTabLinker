@@ -1,12 +1,13 @@
 var domManager = {
     params: {
-        inputUrl: "#txtUrl",
-        inputName: "#txtName",
+        linkInputName: "#txtLink",
+        nameInputName: "#txtName",
+        searchTermInputName: "#searchTerm_",
         addButtonName: "#btnAddLink",
+        linkButtonName: "#btnOpenLink",
         valuesList: ".values-list",
-        paramName: "ntlStorageObjet",
         removeLink: ".remove-link",
-        linkButtonName: ".btnOpenLink"
+        templateName: "#template"
     },
 
     dataManager: null,
@@ -14,40 +15,51 @@ var domManager = {
     init: function(dataManager) {
         this.dataManager = dataManager;
         this.bindAddButton();
-        this.bindRemoveButtons();
+        this.bindRemoveLinks();
+        this.bindOpenButtons();
     },
 
     bindAddButton: function () {
         var _this = this;
         $(_this.params.addButtonName).click(function (e) {
-            var inputUrlValue = $(_this.params.inputUrl).val();
-            var inputNameValue = $(_this.params.inputName).val();
-            if (!inputUrlValue || !inputNameValue) {
-                alert("Please ensure you have completed the Name and URL fields.");
+            var link = $(_this.params.linkInputName);
+            var name = $(_this.params.nameInputName);
+            if (!link.val() || !name.val()) {
+                alert("Please ensure you have entered the link and its name");
                 return;
             }
 
-            var newEntry = {name:inputNameValue, url: inputUrlValue};
-            ntlModel.push(newEntry);
+            var quickLink = {
+                name: $(name).val(),
+                link: $(link).val()
+            }
+            ntlModel.push(quickLink);
             _this.dataManager.saveDataToStorage();
+
+            link.val("");
+            name.val("");
         });
     },
 
-    bindRemoveButtons: function() {
+    bindRemoveLinks: function() {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.removeLink, function(e) {
-            ntlModel.splice($(this).attr('data-val'), 1);
+            ntlModel.splice($(this).attr("data-val"), 1);
             _this.dataManager.saveDataToStorage();
         });
     },
 
-    bindLinkButton: function() {
+    bindOpenButtons: function() {
         var _this = this;
-        $(_this.params.linkButtonName).click(function (e) {
-            var props = { url: "http://www.google.com.au" };
+        $(_this.params.valuesList).on("click", _this.params.linkButtonName, function(e) {
+            var li = $(this).parent("li");
+            var idx = li.attr("data-index");
+            var quickLink = ntlModel[idx];
+            var searchTerm = li.find(_this.params.searchTermInputName + idx).val();
+            var props = { url: quickLink.link.replaceAll("{VALUE}", searchTerm) };
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
-            });
+            });         
         });
     },
 
@@ -55,13 +67,21 @@ var domManager = {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
-        $.each(ntlModel, function (idx, entry) {
-            _this.outputRow(existingValuesList, idx, entry);
+        $.each(ntlModel, function (idx, quickLink) {
+            _this.outputRow(existingValuesList, idx, quickLink);
         });
-        _this.bindLinkButton();
     },
 
-    outputRow: function(list, idx, entry) {
-        list.append("<li><input type=\"text\" name=\"searchField\" /><input name=\"btnOpenLink\" data-val=\"" + idx + "\" class=\"btnOpenLink\" type=\"button\" value=\"Search " + entry.name + "\" /> - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
-    }    
+    outputRow: function(list, idx, quickLink) {
+        var _this = this;
+        var templateHtml = $(_this.params.templateName).clone().html();
+        list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
+    },
+
+    replacePlaceholders: function(html, idx, quickLink) {
+        var outputHtml = html.replaceAll("{INDEX}", idx);
+        outputHtml = outputHtml.replaceAll("{NAME}", quickLink.name);
+        outputHtml = outputHtml.replaceAll("{LINK}", quickLink.link);
+        return outputHtml;
+    }  
 };
