@@ -1,6 +1,6 @@
 ﻿var ntlModel = [];
 
-var newTabLinker = {
+var domManager = {
     params: {
         inputUrl: "#txtUrl",
         inputName: "#txtName",
@@ -23,7 +23,7 @@ var newTabLinker = {
 
             var newEntry = {name:inputNameValue, url: inputUrlValue};
             ntlModel.push(newEntry);
-            _this.saveDataToStorage();
+            dataManager.saveDataToStorage();
         });
     },
 
@@ -31,7 +31,7 @@ var newTabLinker = {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.removeLink, function(e) {
             ntlModel.splice($(this).attr('data-val'), 1);
-            _this.saveDataToStorage();
+            dataManager.saveDataToStorage();
         });
     },
 
@@ -59,12 +59,20 @@ var newTabLinker = {
         list.append("<li><input type=\"text\" name=\"searchField\" /><input name=\"btnOpenLink\" data-val=\"" + idx + "\" class=\"btnOpenLink\" type=\"button\" value=\"Search " + entry.name + "\" /> - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
     },
 
+    
+};
+
+var dataManager = {
+    params: {
+        paramName: "ntlStorageObjet"
+    },
+
     saveDataToStorage: function () {
         var _this = this;
         var save = {};
         save[_this.params.paramName] = ntlModel;
         chrome.storage.sync.set(save, function () {
-            _this.outputExistingValue();
+            domManager.outputExistingValue();
         });
     },
 
@@ -73,7 +81,7 @@ var newTabLinker = {
         chrome.storage.sync.get(_this.params.paramName, function (obj) {
             if (obj[_this.params.paramName]) {
                 ntlModel = obj[_this.params.paramName];
-                _this.outputExistingValue();
+                domManager.outputExistingValue();
             }
         });
     }
@@ -81,8 +89,8 @@ var newTabLinker = {
 
 (function ($) {
     $(document).ready(function () {
-        newTabLinker.loadDataFromStorage();
-        newTabLinker.bindAddButton();
-        newTabLinker.bindRemoveButtons();
+        dataManager.loadDataFromStorage();
+        domManager.bindAddButton();
+        domManager.bindRemoveButtons();
     });
 }(jQuery));
