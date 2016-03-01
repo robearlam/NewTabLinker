@@ -57,9 +57,7 @@ var domManager = {
 
     outputRow: function(list, idx, entry) {
         list.append("<li><input type=\"text\" name=\"searchField\" /><input name=\"btnOpenLink\" data-val=\"" + idx + "\" class=\"btnOpenLink\" type=\"button\" value=\"Search " + entry.name + "\" /> - <a href=\"#\" class=\"remove-link\" data-val=\"" + idx + "\">remove</a></li>");
-    },
-
-    
+    }    
 };
 
 var dataManager = {
