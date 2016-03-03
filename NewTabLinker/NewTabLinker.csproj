@@ -69,17 +69,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\lib\material.min.css" />
+    <Content Include="assets\css\material.min.css" />
+    <Content Include="assets\css\styles.css" />
+    <Content Include="assets\js\dataManager.js" />
+    <Content Include="assets\js\domManager.js" />
     <Content Include="assets\js\lib\jquery-3.0.0.min.js" />
+    <Content Include="assets\js\lib\material.min.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="manifest.json" />
     <Content Include="newtab.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\css\" />
     <Folder Include="assets\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\js\lib\material.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\lib\material.min.css.map" />
+    <Content Include="assets\css\material.min.css.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
