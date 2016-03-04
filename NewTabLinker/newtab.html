@@ -3,10 +3,20 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <link type="text/css" rel="stylesheet" href="/assets/css/material.min.css" />
+    <link type="text/css" rel="stylesheet" href="/assets/css/lib/material.min.css" />
+    <link type="text/css" rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 <body>
-    <div class="mdl-grid">
+    <nav>
+        <h1>New Tab Linker</h1>
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+          <input type="checkbox" id="switch-1" class="mdl-switch__input settings-switch">
+          <span class="mdl-switch__label">Settings</span>
+        </label>
+
+    </nav>
+
+    <section class="mdl-grid settings is-hidden">
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-cell mdl-cell-8-col">
             <fieldset>
@@ -20,24 +30,24 @@
             <input type="button" value="Add Link" name="btnAddLink" id="btnAddLink" />
         </div>
         <div class="mdl-layout-spacer"></div>
-    </div>
+    </section>
 
-    <div class="mdl-grid">
+    <section class="mdl-grid">
         <div class="mdl-cell mdl-cell-2-col"></div>
         <div class="mdl-cell mdl-cell-8-col">
             <ul class="values-list" />
         </div>
         <div class="mdl-cell mdl-cell-2-col"></div>
-    </div>
 
-    <ul id="template" style="display:none">
-        <li data-index="{INDEX}">
-            <label for="searchTerm_{INDEX}">Search {NAME} for:</label>
-            <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" />
-            <input type="button" value="Go" name="btnOpenLink" id="btnOpenLink" />
-            <a href="#" class="remove-link" data-val="{INDEX}">remove</a></li>
-        </li>
-    </ul>
+            <ul id="template" style="display:none">
+                <li data-index="{INDEX}">
+                    <label for="searchTerm_{INDEX}">Search {NAME} for:</label>
+                    <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" />
+                    <input type="button" value="Go" name="btnOpenLink" id="btnOpenLink" />
+                    <a href="#" class="remove-link" data-val="{INDEX}">remove</a>
+                </li>
+            </ul>
+    </section>
 
     <script src="/assets/js/lib/jquery-3.0.0.min.js" type="text/javascript"></script>
     <script src="/assets/js/lib/material.min.js" type="text/javascript"></script>

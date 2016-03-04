@@ -7,7 +7,10 @@ var domManager = {
         linkButtonName: "#btnOpenLink",
         valuesList: ".values-list",
         removeLink: ".remove-link",
-        templateName: "#template"
+        templateName: "#template",
+        settingsSwitch: ".settings-switch",
+        settings: ".settings",
+        isHidden: "is-hidden"
     },
 
     dataManager: null,
@@ -17,6 +20,14 @@ var domManager = {
         this.bindAddButton();
         this.bindRemoveLinks();
         this.bindOpenButtons();
+        this.bindSettingsSwitch();
+    },
+
+    bindSettingsSwitch: function() {
+        var _this = this;
+        $(_this.params.settingsSwitch).click(function (e) {
+            $(_this.params.settings).toggleClass(_this.params.isHidden);
+        });
     },
 
     bindAddButton: function () {

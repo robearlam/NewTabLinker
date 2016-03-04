@@ -5,3 +5,7 @@ li {
 #txtUrl {
   width: 500px;
 }
+
+.is-hidden {
+	display:none;
+}
