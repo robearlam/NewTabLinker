@@ -3779,14 +3779,14 @@ input.mdl-button[type="submit"] {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
     background-color: #EDECFF; }
   .mdl-button--raised.mdl-button--colored {
-    background: #E1C7E8;
+    background: #BFACA0;
     color: #5f5454; }
     .mdl-button--raised.mdl-button--colored:hover {
-      background-color: #E1C7E8; }
+      background-color: #BFACA0; }
     .mdl-button--raised.mdl-button--colored:active {
-      background-color: #E1C7E8; }
+      background-color: #BFACA0; }
     .mdl-button--raised.mdl-button--colored:focus:not(:active) {
-      background-color: #E1C7E8; }
+      background-color: #BFACA0; }
     .mdl-button--raised.mdl-button--colored .mdl-ripple {
       background: rgb(255,255,255); }
 

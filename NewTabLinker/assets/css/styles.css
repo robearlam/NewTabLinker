@@ -1,5 +1,5 @@
 body {
-	background-color:#EDECFF;
+	background-color:#E5DDD5;
 	font-color: #5f5454;
 	color: #5f5454;
 }
@@ -9,18 +9,13 @@ li {
 }
 
 .settings-container {
-	background-color: #FFD9D9;
-	border-bottom: solid 1px #E8D4C6;
+	background-color: #E5CEC0;
+	border-bottom: solid 1px #7F736B;
 }
 
 #txtUrl {
   width: 500px;
 }
-/*
-.mdl-button.mdl-button--colored {
-	background:#E1C7E8;
-	color: #5f5454;
-}*/
 
 .settings-field {
 	margin-bottom: 5px;
@@ -71,19 +66,15 @@ li {
 .link {
 	margin: 20px;
     padding: 5px;
-    border: solid 2px #E8D4C6;
+    border: solid 2px #7F736B;
     width: 300px;
     float: left;
+}
+
+.link .search {
+	width: 175px;
 }
 
 .content-grid {
   max-width: 960px;
 }
-
-/*
-
-#FFF4D5
-#E8D4C6
-#FFD9D9
-#E1C7E8
-#EDECFF
