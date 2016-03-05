@@ -93,7 +93,7 @@ var domManager = {
 
     outputRow: function(list, idx, quickLink) {
         var _this = this;
-        var templateHtml = $(_this.params.templateName).clone().removeClass(_this.params.templateName).html();
+        var templateHtml = $(_this.params.templateName).clone().html();
         list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
     },
 

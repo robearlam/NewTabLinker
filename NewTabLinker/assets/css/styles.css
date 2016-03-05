@@ -68,6 +68,18 @@ li {
 	display: none;
 }
 
+.link {
+	margin: 20px;
+    padding: 5px;
+    border: solid 2px #E8D4C6;
+    width: 300px;
+    float: left;
+}
+
+.content-grid {
+  max-width: 960px;
+}
+
 /*
 
 #FFF4D5

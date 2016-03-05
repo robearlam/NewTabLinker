@@ -42,20 +42,18 @@
     </section>
 
     <section class="mdl-grid">
-        <div class="mdl-cell mdl-cell-2-col"></div>
-        <div class="mdl-cell mdl-cell-8-col">
+        <div class="mdl-cell mdl-cell--12-col">
             <ul class="values-list" />
         </div>
-        <div class="mdl-cell mdl-cell-2-col"></div>
 
-            <ul id="template" style="display:none">
-                <li data-index="{INDEX}">
-                    <label for="searchTerm_{INDEX}">Search:</label>
-                    <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" placeholder="{NAME}" />
-                    <input type="button" value="Go" name="btnOpenLink" id="btnOpenLink" />
-                    <a href="#" class="remove-link" data-val="{INDEX}">remove</a>
-                </li>
-            </ul>
+        <ul id="template" style="display:none">
+            <li class="link" data-index="{INDEX}">
+                <label for="searchTerm_{INDEX}">Search:</label>
+                <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" placeholder="{NAME}" />
+                <button type="button" name="btnOpenLink" id="btnOpenLink" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Go</button>
+                <a href="#" class="remove-link" data-val="{INDEX}">remove</a>
+            </li>
+        </ul>
     </section>
 
     <script src="/assets/js/lib/jquery-3.0.0.min.js" type="text/javascript"></script>
