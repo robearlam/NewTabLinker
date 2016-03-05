@@ -45,9 +45,12 @@ li {
 
 .settings .import-export button {
 	float: right;
-	clear: right;
-	width: 200px;
-	margin-top: 5px;
+	width: 150px;
+}
+
+.settings .import-export label {
+	float: right;
+	margin-right: 5px;
 }
 
 .settings .error {
@@ -75,6 +78,11 @@ li {
 	width: 175px;
 }
 
-.content-grid {
-  max-width: 960px;
+#importFile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }

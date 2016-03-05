@@ -32,10 +32,16 @@
             </div>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-cell mdl-cell-4-col import-export">
-                <fieldset>
-                    <button type="button" name="btnImport" id="btnImport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Import Links</button>
-                    <button type="button" name="btnExport" id="btnExport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Export Links</button>
-                </fieldset>        
+                <form class="import-export-form">
+                    <fieldset>
+                        <div class="file-select">
+                            <button type="button" name="btnImport" id="btnImport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" disabled>Import Links</button>
+                            <input type="file" name="importFile" id="importFile" />
+                            <label for="importFile" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Choose File</label>
+                        </div>
+                        <button type="button" name="btnExport" id="btnExport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Export Links</button>
+                    </fieldset> 
+                </form>       
             </div>
             <div class="mdl-layout-spacer"></div>
         </div>
@@ -56,6 +62,7 @@
         </ul>
     </section>
 
+    <script src="/assets/js/lib/FileSaver.js" type="text/javascript"></script>
     <script src="/assets/js/lib/jquery-3.0.0.min.js" type="text/javascript"></script>
     <script src="/assets/js/lib/material.min.js" type="text/javascript"></script>
     <script src="/assets/js/domManager.js"></script>

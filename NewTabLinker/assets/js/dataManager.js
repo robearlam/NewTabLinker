@@ -1,6 +1,7 @@
 var dataManager = {
     params: {
-        paramName: "ntlStorageObjet"
+        paramName: "ntlStorageObjet",
+        importExportForm: ".import-export-form"
     },
 
     domManager: null,
@@ -27,5 +28,36 @@ var dataManager = {
                 _this.domManager.outputExistingValue();
             }
         });
+    },
+
+    exportLinkData: function() {
+        var blob = new Blob([JSON.stringify(ntlModel)], {
+            type: "text/plain;charset=utf-8;",
+        });
+        saveAs(blob, "newTabLinker.json");
+    },
+
+    importLinkData: function() {
+        _this = this;
+        input = document.getElementById('importFile');
+        if (!input) {
+          alert("Um, couldn't find the fileinput element.");
+        }
+        else if (!input.files) {
+          alert("This browser doesn't seem to support the `files` property of file inputs.");
+        }
+        else if (!input.files[0]) {
+          alert("Please select a file before clicking 'Load'");               
+        }
+        else {
+          file = input.files[0];
+          fr = new FileReader();
+          fr.onload = function(e) {
+            ntlModel = JSON.parse(fr.result);
+            _this.saveDataToStorage();
+            $(_this.params.importExportForm).trigger('reset');
+          };
+          fr.readAsText(file);
+        }
     }
 };
