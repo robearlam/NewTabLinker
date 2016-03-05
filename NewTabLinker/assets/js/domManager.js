@@ -10,7 +10,8 @@ var domManager = {
         templateName: "#template",
         settingsSwitch: ".settings-switch",
         settings: ".settings",
-        isHidden: "is-hidden"
+        isHidden: "is-hidden",
+        settingsError: ".settings .error"
     },
 
     dataManager: null,
@@ -21,22 +22,29 @@ var domManager = {
         this.bindRemoveLinks();
         this.bindOpenButtons();
         this.bindSettingsSwitch();
+
+        $(this.params.settings).slideToggle(0);
+        $(this.params.removeLink).fadeToggle(0);
     },
 
     bindSettingsSwitch: function() {
         var _this = this;
         $(_this.params.settingsSwitch).click(function (e) {
-            $(_this.params.settings).toggleClass(_this.params.isHidden);
+            $(_this.params.settings).slideToggle("fast");
+            $(_this.params.removeLink).fadeToggle("fast");
         });
     },
 
     bindAddButton: function () {
         var _this = this;
         $(_this.params.addButtonName).click(function (e) {
+            var error = $(_this.params.settingsError);
+            error.addClass(_this.params.isHidden);
+
             var link = $(_this.params.linkInputName);
             var name = $(_this.params.nameInputName);
             if (!link.val() || !name.val()) {
-                alert("Please ensure you have entered the link and its name");
+                error.removeClass(_this.params.isHidden);
                 return;
             }
 
@@ -85,7 +93,7 @@ var domManager = {
 
     outputRow: function(list, idx, quickLink) {
         var _this = this;
-        var templateHtml = $(_this.params.templateName).clone().html();
+        var templateHtml = $(_this.params.templateName).clone().removeClass(_this.params.templateName).html();
         list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
     },
 

@@ -1,11 +1,77 @@
+body {
+	background-color:#EDECFF;
+	font-color: #5f5454;
+	color: #5f5454;
+}
+
 li {
   list-style: none;
+}
+
+.settings-container {
+	background-color: #FFD9D9;
+	border-bottom: solid 1px #E8D4C6;
 }
 
 #txtUrl {
   width: 500px;
 }
+/*
+.mdl-button.mdl-button--colored {
+	background:#E1C7E8;
+	color: #5f5454;
+}*/
+
+.settings-field {
+	margin-bottom: 5px;
+	height: 20px;
+}
+
+.settings-field label {
+	width: 50px;
+	float: left;
+	display: block;
+}
+
+.settings-field input {
+	float: left;
+	width: 300px
+}
+
+#btnAddLink {
+	float: right;
+	margin-right:15px;
+	margin-top: 5px;
+}
+
+.settings legend {
+	margin-bottom: 5px;
+}
+
+.settings .import-export button {
+	float: right;
+	clear: right;
+	width: 200px;
+	margin-top: 5px;
+}
+
+.settings .error {
+	color: #EE0000;
+    clear: right;
+    float: right;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
 
 .is-hidden {
-	display:none;
+	display: none;
 }
+
+/*
+
+#FFF4D5
+#E8D4C6
+#FFD9D9
+#E1C7E8
+#EDECFF

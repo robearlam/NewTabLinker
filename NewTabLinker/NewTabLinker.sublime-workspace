@@ -3,6 +3,10 @@
 	{
 		"selected_items":
 		[
+			[
+				"name",
+				"nameInputName"
+			]
 		]
 	},
 	"buffers":
@@ -11,7 +15,31 @@
 			"file": "newtab.html",
 			"settings":
 			{
-				"buffer_size": 689,
+				"buffer_size": 2418,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/css/styles.css",
+			"settings":
+			{
+				"buffer_size": 86,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/js/scripts.js",
+			"settings":
+			{
+				"buffer_size": 321,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/js/domManager.js",
+			"settings":
+			{
+				"buffer_size": 3264,
 				"line_ending": "Unix"
 			}
 		}
@@ -48,7 +76,11 @@
 	},
 	"expanded_folders":
 	[
-		"/home/rob/projects/NewTabLinker/NewTabLinker"
+		"/home/rob/projects/NewTabLinker/NewTabLinker",
+		"/home/rob/projects/NewTabLinker/NewTabLinker/assets",
+		"/home/rob/projects/NewTabLinker/NewTabLinker/assets/css",
+		"/home/rob/projects/NewTabLinker/NewTabLinker/assets/css/lib",
+		"/home/rob/projects/NewTabLinker/NewTabLinker/assets/js"
 	],
 	"file_history":
 	[
@@ -56,7 +88,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -70,6 +102,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"switch",
+			"value_",
+			"'",
+			"val",
+			"name",
+			"inputName",
+			"inputValue"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -87,7 +126,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -96,25 +135,114 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 689,
+						"buffer_size": 2418,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1053,
+								1053
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "assets/css/styles.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 86,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "assets/js/scripts.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								321,
+								321
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assets/js/domManager.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								427,
+								427
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -125,7 +253,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 25.0
 	},
 	"input":
 	{
@@ -162,7 +290,7 @@
 	"project": "NewTabLinker.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":

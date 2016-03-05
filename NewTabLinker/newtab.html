@@ -3,33 +3,42 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <link type="text/css" rel="stylesheet" href="/assets/css/lib/material.min.css" />
+    <link type="text/css" rel="stylesheet" href="/assets/css/lib/material.css" />
     <link type="text/css" rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 <body>
-    <nav>
-        <h1>New Tab Linker</h1>
+    <section class="settings-container">
         <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
           <input type="checkbox" id="switch-1" class="mdl-switch__input settings-switch">
-          <span class="mdl-switch__label">Settings</span>
+          <span class="mdl-switch__label">Edit</span>
         </label>
 
-    </nav>
-
-    <section class="mdl-grid settings is-hidden">
-        <div class="mdl-layout-spacer"></div>
-        <div class="mdl-cell mdl-cell-8-col">
-            <fieldset>
-                <legend>Add Link - Include search term in {VALUE} placeholder</legend>
-                <label for="name">Name:</label>
-                <input type="text" name="txtName" id="txtName" placeholder="Please enter the name" />
-                <br />
-                <label for="name">Link:</label>
-                <input type="text" name="txtLink" id="txtLink" style="width:400px" placeholder="Please the url for this link" />
-            </fieldset>
-            <input type="button" value="Add Link" name="btnAddLink" id="btnAddLink" />
+        <div class="mdl-grid settings">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell-4-col">
+                <fieldset>
+                    <legend>Add Link - Include search term as {VALUE} placeholder</legend>
+                    <div class="settings-field">
+                        <label for="name">Name:</label>
+                        <input type="text" name="txtName" id="txtName" placeholder="Google" />
+                    </div>
+                    <div class="settings-field">
+                        <label for="name">Link:</label>
+                        <input type="text" name="txtLink" id="txtLink" placeholder="https://www.google.com.au/webhp?#q={VALUE}" />
+                    </div>
+                </fieldset>
+                <button type="button" name="btnAddLink" id="btnAddLink" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Add Link</button>
+                <p class="error is-hidden">Please ensure you have entered the link and its name</p>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell-4-col import-export">
+                <fieldset>
+                    <button type="button" name="btnImport" id="btnImport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Import Links</button>
+                    <button type="button" name="btnExport" id="btnExport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Export Links</button>
+                </fieldset>        
+            </div>
+            <div class="mdl-layout-spacer"></div>
         </div>
-        <div class="mdl-layout-spacer"></div>
     </section>
 
     <section class="mdl-grid">
@@ -41,8 +50,8 @@
 
             <ul id="template" style="display:none">
                 <li data-index="{INDEX}">
-                    <label for="searchTerm_{INDEX}">Search {NAME} for:</label>
-                    <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" />
+                    <label for="searchTerm_{INDEX}">Search:</label>
+                    <input type="text" name="searchTerm_{INDEX}" id="searchTerm_{INDEX}" placeholder="{NAME}" />
                     <input type="button" value="Go" name="btnOpenLink" id="btnOpenLink" />
                     <a href="#" class="remove-link" data-val="{INDEX}">remove</a>
                 </li>
