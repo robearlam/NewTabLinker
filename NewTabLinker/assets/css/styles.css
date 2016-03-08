@@ -1,7 +1,29 @@
 body {
-	background-color:#E5DDD5;
 	font-color: #5f5454;
 	color: #5f5454;
+}
+
+.background {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+
+}
+
+.background::after {
+  content: "";
+  background: url("/assets/images/China_town_Manchester.png");
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 li {
@@ -11,6 +33,7 @@ li {
 .settings-container {
 	background-color: #E5CEC0;
 	border-bottom: solid 1px #7F736B;
+  opacity: 0.9;
 }
 
 #txtUrl {
@@ -68,10 +91,12 @@ li {
 
 .link {
 	margin: 20px;
-    padding: 5px;
-    border: solid 2px #7F736B;
-    width: 300px;
-    float: left;
+  padding: 5px;
+  border: solid 1px #7F736B;
+  width: 300px;
+  float: left;
+  background-color: #E5CEC0;
+  opacity: 0.9;
 }
 
 .link .search {
