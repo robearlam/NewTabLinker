@@ -86,3 +86,8 @@ li {
 	position: absolute;
 	z-index: -1;
 }
+
+.file-select {
+  height: 36px;
+  margin-bottom: 5px;
+}
