@@ -3,3 +3,5 @@
 - Hover state for "go" search buttons
 - enter click should work to search context
 - ability to change background image
+- ability to add searches with multiple fields
+- ability to re-order links (jQuery sortable?)
