@@ -5,3 +5,4 @@
 - ability to change background image
 - ability to add searches with multiple fields
 - ability to re-order links (jQuery sortable?)
+- scollbar messes up background
