@@ -31,7 +31,7 @@ li {
 }
 
 .settings-container {
-	background-color: #E5CEC0;
+	background-color: #CCC;
 	border-bottom: solid 1px #7F736B;
   opacity: 0.9;
 }
@@ -93,14 +93,13 @@ li {
 	margin: 20px;
   padding: 5px;
   border: solid 1px #7F736B;
-  width: 300px;
   float: left;
-  background-color: #E5CEC0;
+  background-color: #CCC;
   opacity: 0.9;
 }
 
 .link .search {
-	width: 175px;
+	width: 228px;
 }
 
 #importFile {
@@ -115,4 +114,14 @@ li {
 .file-select {
   height: 36px;
   margin-bottom: 5px;
+}
+
+.remove-link {
+  background: url('/assets/images/delete.png');
+  width:20px;
+  height:20px;
+  display:block;
+  float: left;
+  margin-top: 8px;
+  margin-right: 5px;
 }

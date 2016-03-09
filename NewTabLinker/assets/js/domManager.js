@@ -15,8 +15,7 @@ var domManager = {
         importButton: "#btnImport",
         exportButton: "#btnExport",
         chooseFileInput: "#importFile",
-        chooseFileText: "Choose File",
-        importExportForm: "import-export-form"
+        chooseFileText: "Choose File"
     },
 
     dataManager: null,
