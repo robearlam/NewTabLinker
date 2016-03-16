@@ -1,8 +1,10 @@
-- Remove "Search" from links, larger search bar only text in placeholder
+Done - Remove "Search" from links, larger search bar only text in placeholder
 - Edit should allow you to edit the links
-- Hover state for "go" search buttons
+Done - Hover state for "go" search buttons
 - enter click should work to search context
 - ability to change background image
 - ability to add searches with multiple fields
 - ability to re-order links (jQuery sortable?)
 - scollbar messes up background
+- Create Icon
+- Change edit link to be an image, not text
