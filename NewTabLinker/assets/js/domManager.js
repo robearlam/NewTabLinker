@@ -15,7 +15,8 @@ var domManager = {
         importButton: "#btnImport",
         exportButton: "#btnExport",
         chooseFileInput: "#importFile",
-        chooseFileText: "Choose File"
+        chooseFileText: "Choose File",
+        searchInput: ".search"
     },
 
     dataManager: null,
@@ -86,6 +87,12 @@ var domManager = {
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
             });         
+        });
+
+        $(_this.params.valuesList).on('keyup', this.params.searchInput, function(e) {
+            if(event.keyCode == 13){
+                $(this).next().click();
+            }
         });
     },
 
