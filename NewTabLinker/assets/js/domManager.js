@@ -81,7 +81,7 @@ var domManager = {
             var li = $(this).parent("li");
             var idx = li.attr("data-index");
             var quickLink = ntlModel[idx];
-            var searchTerm = li.find(_this.params.searchTermInputName + idx).val();
+            var searchTerm = li.find(_this.params.searchTermInputName + idx).val().trim();
             var props = { url: quickLink.link.replaceAll("{VALUE}", searchTerm) };
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.update(tab.id, props);
