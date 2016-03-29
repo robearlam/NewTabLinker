@@ -17,15 +17,28 @@
         <div class="mdl-grid settings">
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-cell mdl-cell-4-col">
-                <fieldset>
-                    <legend>Add Link - Include search term as {VALUE} placeholder</legend>
-                    <div class="settings-field">
-                        <label for="name">Name:</label>
-                        <input type="text" name="txtName" id="txtName" placeholder="Google" />
+                <fieldset class="mdl-grid">
+                    <legend  class="typo-styles__demo mdl-typography--title">Add Link - Include search term as {VALUE} placeholder</legend>
+                    <div class="clearfix">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-input-wrapper">
+                            <input type="text" name="txtName" id="txtName" class="mdl-textfield__input"/>
+                            <label for="name" class="mdl-textfield__label">Name</label>
+                        </div>
+                        <div class="help">
+                            <i id="txtNameHelp" class="icon material-icons">help</i>
+                            <div class="mdl-tooltip" for="txtNameHelp">Name for search</div>
+                        </div>
                     </div>
-                    <div class="settings-field">
-                        <label for="name">Link:</label>
-                        <input type="text" name="txtLink" id="txtLink" placeholder="https://www.google.com.au/webhp?#q={VALUE}" />
+                    <div class="clearfix">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label add-input-wrapper">
+                            <input type="text" name="txtLink" id="txtLink" class="mdl-textfield__input"/>
+                            <label for="name" class="mdl-textfield__label">Link</label>
+                        </div>
+                        <div class="help">
+                            <i id="txtLinkHelp" class="icon material-icons">help</i>
+                            <div class="mdl-tooltip" for="txtLinkHelp">eg. https://www.google.com.au/webhp?#q={VALUE}
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
                 <button type="button" name="btnAddLink" id="btnAddLink" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Add Link</button>
@@ -41,8 +54,8 @@
                             <label for="importFile" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Choose File</label>
                         </div>
                         <button type="button" name="btnExport" id="btnExport" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Export Links</button>
-                    </fieldset> 
-                </form>       
+                    </fieldset>
+                </form>
             </div>
             <div class="mdl-layout-spacer"></div>
         </div>
