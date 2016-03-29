@@ -79,6 +79,7 @@ var domManager = {
     bindOpenButtons: function() {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.linkButtonName, function(e) {
+            e.preventDefault();
             var li = $(this).closest("li");
             var idx = li.attr("data-index");
             var quickLink = ntlModel[idx];
