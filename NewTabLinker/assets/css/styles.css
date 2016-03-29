@@ -29,7 +29,7 @@ body {
   font-weight: normal;
   font-style: normal;
   font-size: 16px;
-  line-height: 1;
+  line-height: 16px;
   letter-spacing: normal;
   text-transform: none;
   display: inline-block;
@@ -58,10 +58,21 @@ li {
   list-style: none;
 }
 
+li.search-card {
+    float: left;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 10px;
+    min-height: initial;
+}
+
 .settings-container {
 	background-color: #CCC;
 	border-bottom: solid 1px #7F736B;
   opacity: 0.9;
+}
+
+.settings-container .settings-icon {
+    padding-top: 3px;
 }
 
 .settings .add-input-wrapper {
@@ -132,8 +143,6 @@ li {
   padding: 5px;
   border: solid 1px #7F736B;
   float: left;
-  background-color: #CCC;
-  opacity: 0.9;
 }
 
 .link .search {
@@ -152,14 +161,4 @@ li {
 .file-select {
   height: 36px;
   margin-bottom: 5px;
-}
-
-.remove-link {
-  background: url('/assets/images/delete.png');
-  width:20px;
-  height:20px;
-  display:block;
-  float: left;
-  margin-top: 8px;
-  margin-right: 5px;
 }
