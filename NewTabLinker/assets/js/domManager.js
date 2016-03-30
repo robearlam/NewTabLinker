@@ -19,7 +19,11 @@ var domManager = {
         chooseFileText: "Choose File",
         searchInput: ".search",
         searchCards: ".search-card",
-        editCards: ".edit-card"
+        editCards: ".edit-card",
+        updateButton: ".update-button",
+        updateLink: "#updateLink_",
+        updateName: "#updateName_",
+        searchLabel: ".search-label-"
     },
 
     dataManager: null,
@@ -33,8 +37,11 @@ var domManager = {
         this.bindExportButton();
         this.bindImportButton();
         this.bindChooseFileLink();
+        this.bindUpdateButton();
+        this.showSearchView();
 
         $(this.params.settings).slideToggle(0);
+
     },
 
     bindSettingsSwitch: function() {
@@ -64,11 +71,7 @@ var domManager = {
                 return;
             }
 
-            var quickLink = {
-                name: $(name).val(),
-                link: $(link).val()
-            }
-            ntlModel.push(quickLink);
+            _this.dataManager.addNewLink($(name).val(), $(link).val());
             _this.dataManager.saveDataToStorage();
 
             link.val("");
@@ -108,7 +111,8 @@ var domManager = {
     renderData: function () {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
-        existingValuesList.html("");
+        
+        existingValuesList.children().remove();
         $.each(ntlModel, function (idx, quickLink) {
             _this.renderDataRow(existingValuesList, idx, quickLink);
         });
@@ -184,6 +188,20 @@ var domManager = {
                 label.html(labelVal);
                 importButton.prop('disabled', true);
             }
+        });
+    },
+
+    bindUpdateButton: function() {
+        var _this = this;
+
+        $(_this.params.valuesList).on("click", _this.params.updateButton, function(e) {
+            e.preventDefault();
+            var index = $(this).attr('data-val');
+            var updateName = $(_this.params.updateName + index).val();
+            var updateLink = $(_this.params.updateLink + index).val();
+            $(_this.params.searchLabel + index).html(updateName);
+            _this.dataManager.updateLinkValue(index, updateName, updateLink);
+            _this.dataManager.saveDataToStorage();
         });
     }
 };

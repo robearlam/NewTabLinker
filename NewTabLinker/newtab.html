@@ -73,7 +73,7 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
                             <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
                                    id="searchTerm_{INDEX}"/>
-                            <label for="name" class="mdl-textfield__label">{NAME}</label>
+                            <label for="name" class="mdl-textfield__label search-label-{INDEX}">{NAME}</label>
                         </div>
                         <button type="submit" name="btnOpenLink" id="btnOpenLink"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
@@ -86,19 +86,20 @@
                 <form>
                     <div class="mdl-card__supporting-text">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
-                            <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
-                                   id="searchTerm_{INDEX}"
+                            <input type="text" class="mdl-textfield__input" clchT="search" name="updateName_{INDEX}"
+                                   id="updateName_{INDEX}"
                                    value="{NAME}"/>
                             <label for="name" class="mdl-textfield__label">Name</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
-                            <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
-                                   id="searchTerm_{INDEX}"
+                            <input type="text" class="mdl-textfield__input" clchT="search" name="updateLink_{INDEX}"
+                                   id="updateLink_{INDEX}"
                                    value="{LINK}"/>
                             <label for="name" class="mdl-textfield__label">Link</label>
                         </div>
-                        <button type="submit" name="btnUpdateLink" id="btnUpdateLink"
-                                class="mdl-button mdl-js-button mdl-button--icon">
+                        <button type="button" name="btnUpdateLink" id="btnUpdateLink"
+                                class="update-button mdl-button mdl-js-button mdl-button--icon"
+                                data-val="{INDEX}">
                             <i class="material-icons">save</i></button>
 
                         <button type="button"

@@ -17,7 +17,6 @@ var dataManager = {
         save[_this.params.paramName] = ntlModel;
         chrome.storage.sync.set(save, function () {
             _this.domManager.renderData();
-            _this.domManager.showEditView();
         });
     },
 
@@ -27,7 +26,6 @@ var dataManager = {
             if (obj[_this.params.paramName]) {
                 ntlModel = obj[_this.params.paramName];
                 _this.domManager.renderData();
-                _this.domManager.showSearchView();
             }
         });
     },
@@ -61,5 +59,21 @@ var dataManager = {
           };
           fr.readAsText(file);
         }
+    },
+
+    updateLinkValue: function(idx, name, link) {
+        var quickLink = {
+            name: name,
+            link: link
+        }
+        ntlModel[idx] = quickLink;
+    },
+
+    addNewLink: function(name, link) {
+        var quickLink = {
+            name: name,
+            link: link
+        }
+        ntlModel.push(quickLink);
     }
 };
