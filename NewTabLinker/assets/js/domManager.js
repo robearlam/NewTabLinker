@@ -18,6 +18,8 @@ var domManager = {
         chooseFileInput: "#importFile",
         chooseFileText: "Choose File",
         searchInput: ".search",
+        searchCards: ".search-card",
+        editCards: ".edit-card"
     },
 
     dataManager: null,
@@ -33,7 +35,6 @@ var domManager = {
         this.bindChooseFileLink();
 
         $(this.params.settings).slideToggle(0);
-        $(this.params.removeLink).fadeToggle(0);
     },
 
     bindSettingsSwitch: function() {
@@ -41,10 +42,10 @@ var domManager = {
         $(_this.params.settingsSwitch).click(function (e) {
             $(_this.params.settings).slideToggle("fast", function(e) {
                 if($(_this.params.settingsSwitch).parent().hasClass(_this.params.isChecked)) {
-                    _this.renderEditView();
+                    _this.showEditView();
                 }
                 else {
-                    _this.renderSearchView();
+                    _this.showSearchView();
                 }
             });
         });
@@ -104,25 +105,31 @@ var domManager = {
         });
     },
 
-    renderSearchView: function () {
+    renderData: function () {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
         $.each(ntlModel, function (idx, quickLink) {
-            _this.renderSearchRow(existingValuesList, idx, quickLink);
+            _this.renderDataRow(existingValuesList, idx, quickLink);
         });
     },
 
-    renderSearchRow: function(list, idx, quickLink) {
+    renderDataRow: function(list, idx, quickLink) {
         var _this = this;
         var templateHtml = $(_this.params.searchTemplateName).clone().html();
         list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
     },
 
-    renderEditView: function() {
+    showEditView: function() {
         var _this = this;
-        var existingValuesList = $(_this.params.valuesList);
-        existingValuesList.html("<li>edit view</li>");
+        $(_this.params.searchCards).hide();
+        $(_this.params.editCards).show();
+    },
+
+    showSearchView: function() {
+        var _this = this;
+        $(_this.params.searchCards).show();
+        $(_this.params.editCards).hide();
     },
 
     replacePlaceholders: function(html, idx, quickLink) {

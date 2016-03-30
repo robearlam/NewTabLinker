@@ -67,13 +67,35 @@
         </div>
 
         <ul class="search-template" style="display:none">
-            <li class="mdl-card mdl-shadow--2dp search-card" data-index="{INDEX}">
+            <li class="mdl-card mdl-shadow--2dp link-card search-card" data-index="{INDEX}">
                 <form>
                     <div class="mdl-card__supporting-text">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
                             <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
                                    id="searchTerm_{INDEX}"/>
                             <label for="name" class="mdl-textfield__label">{NAME}</label>
+                        </div>
+                        <button type="submit" name="btnOpenLink" id="btnOpenLink"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">search</i></button>
+                    </div>
+                </form>
+            </li>
+
+            <li class="mdl-card mdl-shadow--2dp link-card edit-card" data-index="{INDEX}">
+                <form>
+                    <div class="mdl-card__supporting-text">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
+                            <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
+                                   id="searchTerm_{INDEX}"
+                                   value="{NAME}"/>
+                            <label for="name" class="mdl-textfield__label">Name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label search-input">
+                            <input type="text" class="mdl-textfield__input" clchT="search" name="searchTerm_{INDEX}"
+                                   id="searchTerm_{INDEX}"
+                                   value="{LINK}"/>
+                            <label for="name" class="mdl-textfield__label">Link</label>
                         </div>
                         <button type="submit" name="btnOpenLink" id="btnOpenLink"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
