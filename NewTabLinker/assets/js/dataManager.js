@@ -16,7 +16,7 @@ var dataManager = {
         var save = {};
         save[_this.params.paramName] = ntlModel;
         chrome.storage.sync.set(save, function () {
-            _this.domManager.outputExistingValue();
+            _this.domManager.renderSearchView();
         });
     },
 
@@ -25,7 +25,7 @@ var dataManager = {
         chrome.storage.sync.get(_this.params.paramName, function (obj) {
             if (obj[_this.params.paramName]) {
                 ntlModel = obj[_this.params.paramName];
-                _this.domManager.outputExistingValue();
+                _this.domManager.renderSearchView();
             }
         });
     },

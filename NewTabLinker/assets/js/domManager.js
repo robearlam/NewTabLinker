@@ -7,16 +7,17 @@ var domManager = {
         linkButtonName: "#btnOpenLink",
         valuesList: ".values-list",
         removeLink: ".remove-link",
-        templateName: "#template",
+        searchTemplateName: ".search-template",
         settingsSwitch: ".settings-switch",
         settings: ".settings",
         isHidden: "is-hidden",
+        isChecked: "is-checked",
         settingsError: ".settings .error",
         importButton: "#btnImport",
         exportButton: "#btnExport",
         chooseFileInput: "#importFile",
         chooseFileText: "Choose File",
-        searchInput: ".search"
+        searchInput: ".search",
     },
 
     dataManager: null,
@@ -38,8 +39,14 @@ var domManager = {
     bindSettingsSwitch: function() {
         var _this = this;
         $(_this.params.settingsSwitch).click(function (e) {
-            $(_this.params.settings).slideToggle("fast");
-            $(_this.params.removeLink).fadeToggle("fast");
+            $(_this.params.settings).slideToggle("fast", function(e) {
+                if($(_this.params.settingsSwitch).parent().hasClass(_this.params.isChecked)) {
+                    _this.renderEditView();
+                }
+                else {
+                    _this.renderSearchView();
+                }
+            });
         });
     },
 
@@ -97,19 +104,25 @@ var domManager = {
         });
     },
 
-    outputExistingValue: function () {
+    renderSearchView: function () {
         var _this = this;
         var existingValuesList = $(_this.params.valuesList);
         existingValuesList.html("");
         $.each(ntlModel, function (idx, quickLink) {
-            _this.outputRow(existingValuesList, idx, quickLink);
+            _this.renderSearchRow(existingValuesList, idx, quickLink);
         });
     },
 
-    outputRow: function(list, idx, quickLink) {
+    renderSearchRow: function(list, idx, quickLink) {
         var _this = this;
-        var templateHtml = $(_this.params.templateName).clone().html();
+        var templateHtml = $(_this.params.searchTemplateName).clone().html();
         list.append(_this.replacePlaceholders(templateHtml, idx, quickLink));
+    },
+
+    renderEditView: function() {
+        var _this = this;
+        var existingValuesList = $(_this.params.valuesList);
+        existingValuesList.html("<li>edit view</li>");
     },
 
     replacePlaceholders: function(html, idx, quickLink) {
