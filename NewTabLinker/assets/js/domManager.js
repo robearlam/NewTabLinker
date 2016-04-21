@@ -82,8 +82,10 @@ var domManager = {
     bindRemoveLinks: function() {
         var _this = this;
         $(_this.params.valuesList).on("click", _this.params.removeLink, function(e) {
-            ntlModel.splice($(this).attr("data-val"), 1);
+            var idx = $(this).attr("data-val");
+            ntlModel.splice(idx, 1);
             _this.dataManager.saveDataToStorage();
+            $(".card-"+idx).remove();
         });
     },
 

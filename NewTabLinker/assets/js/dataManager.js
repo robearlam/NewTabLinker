@@ -11,12 +11,14 @@ var dataManager = {
         this.loadDataFromStorage(this.domManager);
     },
 
-    saveDataToStorage: function () {
+    saveDataToStorage: function (forceRender) {
         var _this = this;
         var save = {};
         save[_this.params.paramName] = ntlModel;
         chrome.storage.sync.set(save, function () {
-            _this.domManager.renderData();
+            if(forceRender) {
+                _this.domManager.renderData();
+            }
         });
     },
 
@@ -54,7 +56,7 @@ var dataManager = {
           fr = new FileReader();
           fr.onload = function(e) {
             ntlModel = JSON.parse(fr.result);
-            _this.saveDataToStorage();
+            _this.saveDataToStorage(true);
             $(_this.params.importExportForm).trigger('reset');
           };
           fr.readAsText(file);
